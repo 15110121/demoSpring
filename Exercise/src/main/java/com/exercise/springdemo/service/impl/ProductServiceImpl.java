@@ -6,7 +6,7 @@ import com.exercise.springdemo.api.dto.update.ProductUpdateDTO;
 import com.exercise.springdemo.api.mapper.ProductMapper;
 import com.exercise.springdemo.domain.Category;
 import com.exercise.springdemo.domain.Product;
-import com.exercise.springdemo.exception.ResourseNotFoundException;
+import com.exercise.springdemo.exception.ResourceNotFoundException;
 import com.exercise.springdemo.repository.CategoryRepository;
 import com.exercise.springdemo.repository.ProductRepository;
 import com.exercise.springdemo.service.ProductService;
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 
             return productMapper.productToProductDTO(product);
         } else {
-            throw new ResourseNotFoundException("Category " + productCreateDTO.getCategoryId() + " not found");
+            throw new ResourceNotFoundException("Category " + productCreateDTO.getCategoryId() + " not found");
         }
     }
 
@@ -98,7 +98,7 @@ public class ProductServiceImpl implements ProductService {
         if (optionalProduct.isPresent()) {
             return productMapper.productToProductDTO(optionalProduct.get());
         } else {
-            throw new ResourseNotFoundException("Product " + productId + " not found");
+            throw new ResourceNotFoundException("Product " + productId + " not found");
         }
     }
 
@@ -110,7 +110,13 @@ public class ProductServiceImpl implements ProductService {
             categoryRepository.save(category.removeProduct(optionalProduct.get()));
             productRepository.delete(optionalProduct.get());
         } else {
-            throw new ResourseNotFoundException("Product " + productID + " not found");
+            throw new ResourceNotFoundException("Product " + productID + " not found");
         }
+    }
+
+    @Override
+    public Integer countProductsByCategoryId(Integer productId) {
+        productRepository.count();
+        return productId;
     }
 }

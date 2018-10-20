@@ -17,4 +17,6 @@ public interface ProductService {
     ProductDTO getSingleProduct (int productId);
 
     void deleteProduct(int productID);
+
+    Integer countProductsByCategoryId(Integer productId);
 }

@@ -4,8 +4,7 @@ import com.exercise.springdemo.api.dto.CategoryDTO;
 import com.exercise.springdemo.api.mapper.CategoryMapper;
 import com.exercise.springdemo.api.mapper.ProductMapper;
 import com.exercise.springdemo.domain.Category;
-import com.exercise.springdemo.domain.Product;
-import com.exercise.springdemo.exception.ResourseNotFoundException;
+import com.exercise.springdemo.exception.ResourceNotFoundException;
 import com.exercise.springdemo.repository.CategoryRepository;
 import com.exercise.springdemo.repository.ProductRepository;
 import com.exercise.springdemo.service.CategoryService;
@@ -45,17 +44,17 @@ public class CategoryServiceImpl implements CategoryService {
         if (optionalCategory.isPresent())
             return categoryMapper.categoryToCategoryDTO(optionalCategory.get());
         else
-            throw new ResourseNotFoundException("Category " + categoryId + " not found");
+            throw new ResourceNotFoundException("Category " + categoryId + " not found");
     }
 
     @Override
     public void deleteCategory(int categoryId) {
         Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
         if(!optionalCategory.isPresent()){
-            throw new ResourseNotFoundException("Category " + categoryId + " not found");
+            throw new ResourceNotFoundException("Category " + categoryId + " not found");
         }
         else {
-            throw new ResourseNotFoundException("Having " + productRepository.count() + " product is running");
+            throw new ResourceNotFoundException("Having " + productRepository.countProductsByCategoryId(categoryId) + " product is running");
         }
     }
 }
