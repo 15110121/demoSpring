@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class    ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
@@ -100,7 +100,7 @@ public class ProductServiceImpl implements ProductService {
             categoryRepository.save(category.removeProduct(optionalProduct.get()));
             productRepository.delete(optionalProduct.get());
         } else {
-            throw new ResourseNotFoundException("Product " + optionalProduct.get() + " not found");
+            throw new ResourseNotFoundException("Product " + productID + " not found");
         }
     }
 }

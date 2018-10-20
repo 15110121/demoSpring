@@ -20,23 +20,28 @@ public class ProductController {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(method = RequestMethod.GET)
     public Set<ProductDTO> getAllProduct(){
         return productService.getAllProduct();
     }
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(method = RequestMethod.POST)
     public ProductDTO addProduct(@RequestBody ProductCreateDTO productCreateDTO){
         return productService.createProduct(productCreateDTO);
     }
 
     @PatchMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(method = RequestMethod.PATCH)
     public ProductDTO updateProduct(@RequestBody ProductUpdateDTO productUpdateDTO){
         return productService.updateProduct(productUpdateDTO);
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable Long productId){
         productService.deleteProduct(productId);
         return;

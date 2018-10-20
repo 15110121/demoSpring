@@ -9,4 +9,6 @@ public interface CategoryService {
     Set<CategoryDTO> getAllCategory();
 
     CategoryDTO getCategory(Long categoryId);
+
+    void deleteCategory(Long categoryId);
 }
