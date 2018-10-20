@@ -3,6 +3,7 @@ package com.exercise.springdemo.service;
 import com.exercise.springdemo.api.dto.ProductDTO;
 import com.exercise.springdemo.api.dto.create.ProductCreateDTO;
 import com.exercise.springdemo.api.dto.update.ProductUpdateDTO;
+import com.exercise.springdemo.domain.Product;
 
 import java.util.Set;
 
@@ -13,5 +14,7 @@ public interface ProductService {
 
     ProductDTO updateProduct(ProductUpdateDTO productUpdateDTO);
 
-    void deleteProduct(Long productID);
+    ProductDTO getSingleProduct (int productId);
+
+    void deleteProduct(int productID);
 }

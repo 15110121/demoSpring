@@ -26,5 +26,5 @@ public class ProductCreateDTO {
 
     private String category;
 
-    private Long categoryId;
+    private int categoryId;
 }

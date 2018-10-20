@@ -17,7 +17,7 @@ public class ProductUpdateDTO {
 
     @NotNull
     @NotBlank
-    private Long id;
+    private int id;
 
     @NotBlank
     @NotNull
@@ -29,5 +29,5 @@ public class ProductUpdateDTO {
 
     private Integer amount;
 
-    private Long categoryId;
+    private int categoryId;
 }

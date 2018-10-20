@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class    ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
@@ -60,31 +60,31 @@ public class    ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO updateProduct(ProductUpdateDTO productUpdateDTO) {
         Optional<Product> optionalProduct = productRepository.findById(productUpdateDTO.getId());
-        if(!optionalProduct.isPresent()){
+        if (!optionalProduct.isPresent()) {
             return null;
         }
         Product product = optionalProduct.get();
-        if(productUpdateDTO.getCategoryId()!=null){
+        if (productUpdateDTO.getCategoryId() != product.getCategory().getId()) {
             Category category = product.getCategory();
             categoryRepository.save(category.removeProduct(product));
 
-            Optional<Category> optionalCategory= categoryRepository.findById(productUpdateDTO.getCategoryId());
-            if(optionalCategory.isPresent()){
+            Optional<Category> optionalCategory = categoryRepository.findById(productUpdateDTO.getCategoryId());
+            if (optionalCategory.isPresent()) {
                 categoryRepository.save(optionalCategory.get().addProduct(product));
                 product.setCategory(optionalCategory.get());
             }
 
         }
-        if(productUpdateDTO.getName()!=null) {
+        if (productUpdateDTO.getName() != null) {
             product.setName(productUpdateDTO.getName());
         }
-        if(productUpdateDTO.getDescription()!=null){
+        if (productUpdateDTO.getDescription() != null) {
             product.setDescription(productUpdateDTO.getDescription());
         }
-        if(productUpdateDTO.getAmount()!=null){
+        if (productUpdateDTO.getAmount() != null) {
             product.setAmount(productUpdateDTO.getAmount());
         }
-        if(productUpdateDTO.getPrice()!=product.getPrice()){
+        if (productUpdateDTO.getPrice() != product.getPrice()) {
             product.setPrice(productUpdateDTO.getPrice());
         }
 
@@ -93,7 +93,17 @@ public class    ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(Long productID) {
+    public ProductDTO getSingleProduct(int productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isPresent()) {
+            return productMapper.productToProductDTO(optionalProduct.get());
+        } else {
+            throw new ResourseNotFoundException("Product " + productId + " not found");
+        }
+    }
+
+    @Override
+    public void deleteProduct(int productID) {
         Optional<Product> optionalProduct = productRepository.findById(productID);
         if (optionalProduct.isPresent()) {
             Category category = optionalProduct.get().getCategory();

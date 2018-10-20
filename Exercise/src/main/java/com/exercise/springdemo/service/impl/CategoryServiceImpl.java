@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDTO getCategory(Long categoryId) {
+    public CategoryDTO getCategory(int categoryId) {
         Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
         if (optionalCategory.isPresent())
             return categoryMapper.categoryToCategoryDTO(optionalCategory.get());
@@ -49,13 +49,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCategory(Long categoryId) {
+    public void deleteCategory(int categoryId) {
         Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
         if(!optionalCategory.isPresent()){
-            throw new ResourseNotFoundException("Category" + categoryId + "not found");
+            throw new ResourseNotFoundException("Category " + categoryId + " not found");
         }
         else {
-            throw new ResourseNotFoundException("Having" + productRepository.count() + "is running");
+            throw new ResourseNotFoundException("Having " + productRepository.count() + " product is running");
         }
     }
 }

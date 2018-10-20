@@ -19,15 +19,19 @@ public class CategoryController {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(method = RequestMethod.GET)
     public Set<CategoryDTO> getAllCaegory(){
         return categoryService.getAllCategory();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CategoryDTO getCategory(@PathVariable("id") Integer categoryId){
+        return categoryService.getCategory(categoryId);
+    }
+
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteCategory(@PathVariable Long categoryId){
+    public void deleteCategory(@PathVariable("id") Integer categoryId){
         categoryService.deleteCategory(categoryId);
     }
 }

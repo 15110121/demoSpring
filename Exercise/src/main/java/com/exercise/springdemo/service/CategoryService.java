@@ -8,7 +8,7 @@ public interface CategoryService {
 
     Set<CategoryDTO> getAllCategory();
 
-    CategoryDTO getCategory(Long categoryId);
+    CategoryDTO getCategory(int categoryId);
 
-    void deleteCategory(Long categoryId);
+    void deleteCategory(int categoryId);
 }

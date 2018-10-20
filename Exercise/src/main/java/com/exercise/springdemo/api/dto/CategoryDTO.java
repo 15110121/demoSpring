@@ -1,6 +1,5 @@
 package com.exercise.springdemo.api.dto;
 
-import com.exercise.springdemo.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +15,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDTO {
+
+    @NotNull
+    @NotBlank
+    private int id;
+
     @NotNull
     @NotBlank
     private String name;

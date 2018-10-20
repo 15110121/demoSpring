@@ -1,6 +1,5 @@
 package com.exercise.springdemo.api.dto;
 
-import com.exercise.springdemo.domain.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +13,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class ProductDTO {
 
+    @NotNull
+    @NotBlank
+    private int id;
+
     @NotBlank
     @NotNull
     private String name;
@@ -26,5 +29,5 @@ public class ProductDTO {
 
     private String category;
 
-    private Long categoryId;
+    private int categoryId;
 }

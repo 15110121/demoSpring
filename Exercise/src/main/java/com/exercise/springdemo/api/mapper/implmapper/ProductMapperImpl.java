@@ -13,6 +13,7 @@ public class ProductMapperImpl implements ProductMapper {
         if (product == null)return null;
         else {
             ProductDTO productDTO = new ProductDTO();
+            productDTO.setId(product.getId());
             productDTO.setName(product.getName());
             productDTO.setAmount(product.getAmount());
             productDTO.setPrice(product.getPrice());

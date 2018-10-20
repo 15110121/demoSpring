@@ -25,15 +25,15 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Category fruit = new Category();
         fruit.setName("Fruits");
-        fruit.setDescription("This is good for your health");
+        fruit.setDescription("This is good for your health 1");
 
         Category fresh = new Category();
         fresh.setName("Fresh");
-        fresh.setDescription("This is good for your health");
+        fresh.setDescription("This is good for your health 2");
 
         Category nuts = new Category();
         nuts.setName("Nuts");
-        nuts.setDescription("This is good for your health");
+        nuts.setDescription("This is good for your health 3");
 
         Category saveFruit = categoryRepository.save(fruit);
         Category saveFresh = categoryRepository.save(fresh);
@@ -48,18 +48,18 @@ public class DataLoader implements CommandLineRunner {
         productRepository.save(apple);
 
         Product orange = new Product();
-        orange.setName("Apple");
+        orange.setName("Orange");
         orange.setAmount(3);
         orange.setPrice(200);
-        orange.setDescription("This is an apple");
+        orange.setDescription("This is an orange");
         orange.setCategory(saveFresh);
         productRepository.save(orange);
 
         Product lemon = new Product();
-        lemon.setName("Apple");
+        lemon.setName("Lemon");
         lemon.setAmount(3);
         lemon.setPrice(200);
-        lemon.setDescription("This is an apple");
+        lemon.setDescription("This is an lemon");
         lemon.setCategory(saveNuts);
         productRepository.save(lemon);
     }
