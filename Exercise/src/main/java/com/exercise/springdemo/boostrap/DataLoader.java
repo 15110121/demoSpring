@@ -35,9 +35,14 @@ public class DataLoader implements CommandLineRunner {
         nuts.setName("Nuts");
         nuts.setDescription("This is good for your health 3");
 
+        Category electronic = new Category();
+        electronic.setName("Electronic");
+        electronic.setDescription("This is electronic category");
+
         Category saveFruit = categoryRepository.save(fruit);
         Category saveFresh = categoryRepository.save(fresh);
         Category saveNuts = categoryRepository.save(nuts);
+        Category saveElectronic = categoryRepository.save(electronic);
 
         Product apple = new Product();
         apple.setName("Apple");
