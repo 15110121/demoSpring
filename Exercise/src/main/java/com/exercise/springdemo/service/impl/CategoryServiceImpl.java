@@ -4,6 +4,7 @@ import com.exercise.springdemo.api.dto.CategoryDTO;
 import com.exercise.springdemo.api.mapper.CategoryMapper;
 import com.exercise.springdemo.api.mapper.ProductMapper;
 import com.exercise.springdemo.domain.Category;
+import com.exercise.springdemo.exception.RelatedResourceException;
 import com.exercise.springdemo.exception.ResourceNotFoundException;
 import com.exercise.springdemo.repository.CategoryRepository;
 import com.exercise.springdemo.repository.ProductRepository;
@@ -19,15 +20,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
-    private final ProductMapper productMapper;
-    private final ProductRepository productRepository;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper,
-                               ProductMapper productMapper, ProductRepository productRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
-        this.productMapper = productMapper;
-        this.productRepository = productRepository;
     }
 
     @Override
@@ -55,8 +51,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
         Category foundCategory = optionalCategory.get();
         if (!foundCategory.getProducts().isEmpty()) {
-            productRepository.count();
-            throw new ResourceNotFoundException("Having " + productRepository.countProductsByCategoryId(categoryId) + " product is running");
+            throw new RelatedResourceException("Can not delete. " + foundCategory.getProducts().size() + " product is contained");
         } else {
             categoryRepository.deleteById(categoryId);
         }
